@@ -1,3 +1,4 @@
+//importing nav elements
 import {
   Account,
   Commerce,
@@ -11,7 +12,7 @@ import {
 } from './NavElements';
 
 import React from 'react';
-
+//Nav Component
 const Nav = () => {
   return (
     <NavContainer className="nav-container">

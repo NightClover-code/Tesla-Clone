@@ -1,8 +1,12 @@
+//importing libraries, components and styles
 import React, { useEffect } from 'react';
 import { ButtonsContainer, Button } from './OrderElements';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+//Ordering tesla cars 'buttons' component
 const Order = () => {
+  //initializing AOS library
   useEffect(() => {
     AOS.init({
       duration: 1000,

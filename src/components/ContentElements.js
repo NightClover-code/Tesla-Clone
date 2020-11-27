@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 export const Main = styled.main``;
-
+//title text and detail using styled components
 export const TextContent = styled.div`
   display: block;
   position: fixed;

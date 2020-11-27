@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 export const Header = styled.header``;
+//nav elements using styled components
 export const NavContainer = styled.div`
   display: block;
   width: 95%;

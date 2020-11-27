@@ -1,8 +1,12 @@
+//importing libraries, components and styles
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Title, TextContent, Detail } from './ContentElements';
+
+//Text content component
 const Content = () => {
+  //initializing AOS library
   useEffect(() => {
     AOS.init({
       duration: 1000,

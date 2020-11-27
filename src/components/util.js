@@ -1,3 +1,4 @@
+//website information function
 const information = () => {
   return [
     {
