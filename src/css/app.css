@@ -1,0 +1,25 @@
+.dark-btn {
+  background-color: #000000;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.light-btn {
+  background-color: #fff;
+  opacity: 0.5;
+}
+
+.text-content .title {
+  color: #393c41;
+}
+
+.text-content .detail {
+  color: #494949;
+}
+
+.app-container {
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+/*# sourceMappingURL=app.css.map */

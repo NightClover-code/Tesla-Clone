@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.background-images {
+  width: 100%;
+  position: relative;
+}
+
+.background-images .banner,
+.background-images .solar-panel,
+.background-images .accessories,
+.background-images .car {
+  max-height: 110vh;
+  display: block;
+}
+.background-images .banner img,
+.background-images .solar-panel img,
+.background-images .accessories img,
+.background-images .car img {
+  width: 100%;
+}
