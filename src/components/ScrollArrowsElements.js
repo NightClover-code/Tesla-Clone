@@ -10,7 +10,7 @@ export const ScrollArrowsContainer = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export const ScrollArrow = styled.div`
+export const ScrollArrow = styled.button`
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -18,5 +18,6 @@ export const ScrollArrow = styled.div`
   border-style: solid;
   border-width: 2px;
   background-color: rgba(0, 0, 0, 0);
+  outline: none;
   cursor: pointer;
 `;

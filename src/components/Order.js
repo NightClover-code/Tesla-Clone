@@ -17,7 +17,7 @@ const Order = () => {
     const controller = new ScrollMagic.Controller();
     const scene = new ScrollMagic.Scene({
       triggerElement: '.model1',
-      duration: 800,
+      duration: 500,
       triggerHook: 2,
     })
       .addTo(controller)
