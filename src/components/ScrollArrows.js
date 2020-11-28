@@ -1,36 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { ScrollArrowsContainer, ScrollArrow } from './ScrollArrowsElements';
-//jump library
-import jump from 'jump.js';
+
 //App component
-const ScrollArrows = ({ images, currentIndex, setCurrentIndex }) => {
+const ScrollArrows = ({ onArrowClick, loading, currentIndex }) => {
   //ref to arrows
   const arrowUp = useRef(null);
   const arrowDown = useRef(null);
-  const [loading, setLoading] = useState(false);
-  //arrows on Click events
+  //removing arrows at limits
 
-  // on click event
-  const onArrowClick = direction => {
-    setLoading(true);
-    //if user clicked on arrow up button
-    if (direction === 'go-up') {
-      setTimeout(() => setLoading(false), 1000);
-      //animation to next section
-      jumpTo(images[currentIndex - 1]);
-      setCurrentIndex(currentIndex - 1);
-      //if user clicked on arrow down button
-    } else if (direction === 'go-down') {
-      setTimeout(() => setLoading(false), 1000);
-      //animation to next section
-      jumpTo(images[currentIndex + 1]);
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
-  //jump to an element
-  const jumpTo = image => {
-    jump(image);
-  };
   return (
     <ScrollArrowsContainer className="scroll-Arrows-container">
       <ScrollArrow
