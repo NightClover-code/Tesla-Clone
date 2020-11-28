@@ -1,17 +1,19 @@
 //importing libraries, components and styles
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Title, TextContent, Detail } from './ContentElements';
+//scroll library
+import jump from 'jump.js';
 
 //Text content component
 const Content = () => {
-  //initializing AOS library
   useEffect(() => {
     AOS.init({
       duration: 1000,
     });
   }, []);
+
   return (
     <TextContent className="text-content">
       <Title className="title" data-aos="fade-up">

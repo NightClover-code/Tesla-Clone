@@ -1,12 +1,42 @@
-.dark-btn {
+.scroll-arrows-container .scroll-arrow {
+  position: relative;
+  border-color: #000;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.scroll-arrows-container .scroll-arrow svg {
+  position: absolute;
+  right: 25%;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  top: 25%;
+}
+
+.scroll-arrows-container .scroll-arrow:hover {
+  background-color: #fff;
+}
+
+.buttons-container {
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.buttons-container .dark-btn {
   background-color: #000000;
   color: #fff;
   opacity: 0.8;
 }
 
-.light-btn {
+.buttons-container .light-btn {
   background-color: #fff;
   opacity: 0.5;
+}
+
+.text-content {
+  opacity: 1;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .text-content .title {
@@ -15,6 +45,10 @@
 
 .text-content .detail {
   color: #494949;
+}
+
+.fade-in {
+  opacity: 0;
 }
 
 .app-container {
