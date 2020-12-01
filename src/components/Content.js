@@ -6,7 +6,7 @@ import { Title, TextContent, Detail } from './ContentElements';
 //importing scroll magic library
 import ScrollMagic from 'scrollmagic';
 //Text content component
-const Content = () => {
+const Content = ({ currentImage }) => {
   //ref to the text content
   const textContentRef = useRef(null);
   useEffect(() => {
@@ -17,11 +17,11 @@ const Content = () => {
     const scene = new ScrollMagic.Scene({
       triggerElement: '.model1',
       duration: 500,
-      triggerHook: 2,
+      triggerHook: 0.75,
     })
       .addTo(controller)
       .setClassToggle(textContentRef.current, 'fade-in');
-  }, []);
+  }, [currentImage]);
 
   return (
     <TextContent className="text-content" ref={textContentRef}>

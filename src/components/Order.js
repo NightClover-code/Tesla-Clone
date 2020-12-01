@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import ScrollMagic from 'scrollmagic';
 
 //Ordering tesla cars 'buttons' component
-const Order = () => {
+const Order = ({ currentImage }) => {
   //initializing AOS library
   const buttonsRef = useRef(null);
   useEffect(() => {
@@ -18,11 +18,11 @@ const Order = () => {
     const scene = new ScrollMagic.Scene({
       triggerElement: '.model1',
       duration: 500,
-      triggerHook: 2,
+      triggerHook: 0.75,
     })
       .addTo(controller)
       .setClassToggle(buttonsRef.current, 'fade-in');
-  }, []);
+  }, [currentImage]);
   return (
     <ButtonsContainer ref={buttonsRef} className="buttons-container">
       <div

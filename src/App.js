@@ -10,10 +10,9 @@ import Order from './components/Order';
 //importing scroll magic library
 import ScrollMagic from 'scrollmagic';
 import ScrollArrows from './components/ScrollArrows';
-//jump library
-import jump from 'jump.js';
 //importing data
 import data from './components/util';
+
 //ref to background images
 const banner = document.querySelector('.banner');
 const model1 = document.querySelector('.model1');
@@ -35,56 +34,17 @@ const images = [
 //App component
 const App = () => {
   //current Index State
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [currentImage, setCurrentImage] = useState(0);
-  //onclick
-  const onArrowClick = direction => {
-    setLoading(true);
-    //if user clicked on arrow up button
-    if (direction === 'go-up') {
-      setTimeout(() => setLoading(false), 1000);
-      //animation to next section
-      if (currentIndex > 0) {
-        setCurrentImage(images[currentIndex]);
-        jumpTo(images[currentIndex - 1]);
-        setCurrentIndex(currentIndex - 1);
-      } else {
-        setCurrentIndex(0);
-      }
-      //if user clicked on arrow down button
-    } else if (direction === 'go-down') {
-      setTimeout(() => setLoading(false), 1000);
-      //animation to next section
-      if (currentIndex < 8) {
-        setCurrentImage(images[currentIndex]);
-        jumpTo(images[currentIndex + 1]);
-        setCurrentIndex(currentIndex + 1);
-      } else {
-        setCurrentIndex(8);
-      }
-    }
-  };
-  //jump to an element
-  const jumpTo = image => {
-    jump(image);
-  };
+  const [currentImage, setCurrentImage] = useState(images[0]);
+  const [currentData, setCurrentData] = useState(data[0]);
   return (
     <div className="app-container">
       <Header>
         <Nav />
       </Header>
       <Main>
-        <ScrollArrows
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-          images={images}
-          onArrowClick={onArrowClick}
-          loading={loading}
-          currentImage={currentImage}
-        />
-        <Content />
-        <Order />
+        <ScrollArrows images={images} />
+        <Content images={images} />
+        <Order images={images} />
       </Main>
     </div>
   );
