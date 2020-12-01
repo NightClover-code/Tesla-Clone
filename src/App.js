@@ -3,16 +3,11 @@ import './css/app.css';
 //imoprting components
 import { Header } from './components/NavElements';
 import Nav from './components/Nav';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Content from './components/Content';
 import { Main } from './components/ContentElements';
 import Order from './components/Order';
-//importing scroll magic library
-import ScrollMagic from 'scrollmagic';
 import ScrollArrows from './components/ScrollArrows';
-//importing data
-import data from './components/util';
-
 //ref to background images
 const banner = document.querySelector('.banner');
 const model1 = document.querySelector('.model1');
@@ -31,20 +26,49 @@ const images = [
   solarPanel,
   accessories,
 ];
+//Order buttons Ref
 //App component
 const App = () => {
-  //current Index State
-  const [currentImage, setCurrentImage] = useState(images[0]);
-  const [currentData, setCurrentData] = useState(data[0]);
+  //state
+  const [detail, setDetail] = useState('detail');
+  const [btnLeft, setBtnLeft] = useState('order baby left');
+  const [btnRight, setBtnRight] = useState('order baby right');
+  const [title, setTitle] = useState('buy stuff please');
+  //Order buttons
+  const buttonsRef = useRef(null);
+  //ref to the text content
+  const textContentRef = useRef(null);
+  const getData = currentData => {
+    setTitle(currentData.title);
+    setDetail(currentData.detail);
+    setBtnLeft(currentData.buttonLeft);
+    setBtnRight(currentData.buttonRight);
+  };
   return (
     <div className="app-container">
       <Header>
         <Nav />
       </Header>
       <Main>
-        <ScrollArrows images={images} />
-        <Content images={images} />
-        <Order images={images} />
+        <ScrollArrows
+          images={images}
+          buttonsRef={buttonsRef}
+          textContentRef={textContentRef}
+          getData={getData}
+        />
+
+        <Content
+          images={images}
+          textContentRef={textContentRef}
+          title={title}
+          detail={detail}
+        />
+        <Order
+          images={images}
+          buttonsRef={buttonsRef}
+          btnLeft={btnLeft}
+          btnRight={btnRight}
+        />
       </Main>
     </div>
   );

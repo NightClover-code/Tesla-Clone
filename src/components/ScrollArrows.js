@@ -1,18 +1,60 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ScrollArrowsContainer, ScrollArrow } from './ScrollArrowsElements';
+//importing scroll magic library
+import ScrollMagic from 'scrollmagic';
 //jump library
 import jump from 'jump.js';
+//AOS library
+import AOS from 'aos';
+//importing data
+import data from './util';
 //App component
-const ScrollArrows = ({ images }) => {
+const ScrollArrows = ({ images, buttonsRef, textContentRef, getData }) => {
   //ref to arrows
   const arrowUp = useRef(null);
   const arrowDown = useRef(null);
   //state
+  const [currentImage, setCurrentImage] = useState(images[0]);
+  const [currentData, setCurrentData] = useState(data[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    console.log(currentIndex);
+    setCurrentImage(images[currentIndex]);
+  }, [currentIndex, images]);
+  useEffect(() => {
+    setCurrentData(data[currentIndex]);
   }, [currentIndex]);
+  useEffect(() => {
+    getData(currentData);
+  }, [currentData, getData]);
+  useEffect(() => {
+    //initializing AOS libra ry
+    AOS.init({
+      duration: 1000,
+    });
+    const controller = new ScrollMagic.Controller();
+    const scene = new ScrollMagic.Scene({
+      triggerElement: `.${currentImage.classList[1]}`,
+      duration: 500,
+      triggerHook: 0.75,
+    })
+      .addTo(controller)
+      .setClassToggle(buttonsRef.current, 'fade-in');
+  }, [buttonsRef, currentImage]);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+    const controller = new ScrollMagic.Controller();
+    const scene = new ScrollMagic.Scene({
+      triggerElement: `.${currentImage.classList[1]}`,
+      duration: 500,
+      triggerHook: 0.75,
+    })
+      .addTo(controller)
+      .setClassToggle(textContentRef.current, 'fade-in');
+  }, [currentImage, textContentRef]);
+
   //onclick
   const onArrowUpClick = () => {
     setTimeout(() => setLoading(true), 10);
