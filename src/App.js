@@ -39,8 +39,8 @@ const App = () => {
   //ref to the text content
   const textContentRef = useRef(null);
   const getData = currentData => {
-    setTitle(currentData.title);
     setDetail(currentData.detail);
+    setTitle(currentData.title);
     setBtnLeft(currentData.buttonLeft);
     setBtnRight(currentData.buttonRight);
   };

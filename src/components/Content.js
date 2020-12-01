@@ -1,12 +1,9 @@
 //importing libraries, components and styles
-import React, { useEffect, useRef } from 'react';
-import AOS from 'aos';
+import React from 'react';
 import 'aos/dist/aos.css';
 import { Title, TextContent, Detail } from './ContentElements';
-//importing scroll magic library
-import ScrollMagic from 'scrollmagic';
 //Text content component
-const Content = ({ currentImage, textContentRef, title, detail }) => {
+const Content = ({ textContentRef, title, detail }) => {
   return (
     <TextContent className="text-content" ref={textContentRef}>
       <Title className="title" data-aos="fade-up">
