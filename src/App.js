@@ -3,11 +3,13 @@ import './css/app.css';
 //imoprting components
 import { Header } from './components/NavElements';
 import Nav from './components/Nav';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Content from './components/Content';
 import { Main } from './components/ContentElements';
 import Order from './components/Order';
 import ScrollArrows from './components/ScrollArrows';
+//importing data
+import data from './components/util';
 //ref to background images
 const banner = document.querySelector('.banner');
 const model1 = document.querySelector('.model1');
@@ -30,19 +32,21 @@ const images = [
 //App component
 const App = () => {
   //state
-  const [detail, setDetail] = useState('detail');
-  const [btnLeft, setBtnLeft] = useState('order baby left');
-  const [btnRight, setBtnRight] = useState('order baby right');
-  const [title, setTitle] = useState('buy stuff please');
+  const [detail, setDetail] = useState(data[0].detail);
+  const [btnLeft, setBtnLeft] = useState(data[0].buttonRight);
+  const [btnRight, setBtnRight] = useState(data[0].buttonLeft);
+  const [title, setTitle] = useState(data[0].title);
   //Order buttons
   const buttonsRef = useRef(null);
   //ref to the text content
   const textContentRef = useRef(null);
   const getData = currentData => {
-    setDetail(currentData.detail);
-    setTitle(currentData.title);
-    setBtnLeft(currentData.buttonLeft);
-    setBtnRight(currentData.buttonRight);
+    setTimeout(() => {
+      setDetail(currentData.detail);
+      setTitle(currentData.title);
+      setBtnLeft(currentData.buttonLeft);
+      setBtnRight(currentData.buttonRight);
+    }, 500);
   };
   return (
     <div className="app-container">

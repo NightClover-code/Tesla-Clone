@@ -30,26 +30,26 @@ const ScrollArrows = ({ images, buttonsRef, textContentRef, getData }) => {
   useEffect(() => {
     //initializing AOS libra ry
     AOS.init({
-      duration: 1000,
+      duration: 750,
     });
     const controller = new ScrollMagic.Controller();
     const scene = new ScrollMagic.Scene({
       triggerElement: `.${currentImage.classList[1]}`,
       duration: 500,
-      triggerHook: 0.75,
+      triggerHook: 0.9,
     })
       .addTo(controller)
       .setClassToggle(buttonsRef.current, 'fade-in');
   }, [buttonsRef, currentImage]);
   useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 2000,
     });
     const controller = new ScrollMagic.Controller();
     const scene = new ScrollMagic.Scene({
       triggerElement: `.${currentImage.classList[1]}`,
       duration: 500,
-      triggerHook: 0.75,
+      triggerHook: 0.9,
     })
       .addTo(controller)
       .setClassToggle(textContentRef.current, 'fade-in');
