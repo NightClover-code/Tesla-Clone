@@ -22,7 +22,6 @@ export const Logo = styled.div`
 `;
 
 export const Products = styled.ul`
-  cursor: pointer;
   text-align: center;
   margin-top: 15px;
   margin-left: 80px;

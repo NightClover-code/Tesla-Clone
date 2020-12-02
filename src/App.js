@@ -53,6 +53,8 @@ const App = () => {
   const buttonsRef = useRef(null);
   const btnRightRef = useRef(null);
   const btnLeftRef = useRef(null);
+  const listItemsRef = useRef(null);
+  const logoRef = useRef(null);
   //ref to the text content
   const textContentRef = useRef(null);
   useEffect(() => {
@@ -136,12 +138,32 @@ const App = () => {
     }
   };
   const onProductsClick = event => {
+    setTimeout(() => listItemsRef.current.classList.add('disable'), 10);
+    setTimeout(() => listItemsRef.current.classList.remove('disable'), 1000);
     jump(`.${event.target.getAttribute('data-id')}`);
+    setCurrentIndex(event.target.getAttribute('data-number'));
+  };
+  const onLogoClick = () => {
+    setTimeout(() => logoRef.current.classList.add('disable'), 10);
+    setTimeout(() => logoRef.current.classList.remove('disable'), 1000);
+    jump('.banner');
+    setCurrentIndex(0);
+    setTimeout(() => {
+      setDetail(data[0].detail);
+      setTitle(data[0].title);
+      setBtnLeft(data[0].buttonLeft);
+      setBtnRight(data[0].buttonRight);
+    }, 2000);
   };
   return (
     <div className="app-container">
       <Header>
-        <Nav onProductsClick={onProductsClick} />
+        <Nav
+          onProductsClick={onProductsClick}
+          onLogoClick={onLogoClick}
+          listItemsRef={listItemsRef}
+          logoRef={logoRef}
+        />
       </Header>
       <Main>
         <ScrollArrows

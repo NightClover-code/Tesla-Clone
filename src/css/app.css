@@ -101,4 +101,9 @@
   margin: auto;
   overflow: hidden;
 }
+
+.disable {
+  pointer-events: none !important;
+  cursor: default !important;
+}
 /*# sourceMappingURL=app.css.map */
