@@ -1,5 +1,9 @@
 ///importing styles
 import './css/app.css';
+//AOS library
+import AOS from 'aos';
+//importing scroll magic library
+import ScrollMagic from 'scrollmagic';
 //imoprting components
 import { Header } from './components/NavElements';
 import Nav from './components/Nav';
@@ -41,12 +45,78 @@ const App = () => {
   const [btnLeft, setBtnLeft] = useState(data[0].btnLeft);
   const [btnRight, setBtnRight] = useState(data[0].btnRight);
   const [title, setTitle] = useState(data[0].title);
+  const [currentImage, setCurrentImage] = useState(images[0]);
+  const [currentData, setCurrentData] = useState(data[0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(false);
   //Order buttons
   const buttonsRef = useRef(null);
   const btnRightRef = useRef(null);
   const btnLeftRef = useRef(null);
   //ref to the text content
   const textContentRef = useRef(null);
+  useEffect(() => {
+    setCurrentImage(images[currentIndex]);
+  }, [currentIndex]);
+  useEffect(() => {
+    setCurrentData(data[currentIndex]);
+  }, [currentIndex]);
+  useEffect(() => {
+    getData(currentData, currentIndex);
+  }, [currentData, currentIndex]);
+  useEffect(() => {
+    //initializing AOS library
+    AOS.init({
+      duration: 750,
+    });
+    const controller = new ScrollMagic.Controller();
+    const scene = new ScrollMagic.Scene({
+      triggerElement: `.${currentImage.classList[1]}`,
+      duration: 500,
+      triggerHook: 0.9,
+    })
+      .addTo(controller)
+      .setClassToggle(buttonsRef.current, 'fade-in');
+  }, [buttonsRef, currentImage]);
+  useEffect(() => {
+    //initializing AOS library
+    AOS.init({
+      duration: 2000,
+    });
+    const controller = new ScrollMagic.Controller();
+    const scene = new ScrollMagic.Scene({
+      triggerElement: `.${currentImage.classList[1]}`,
+      duration: 500,
+      triggerHook: 0.9,
+    })
+      .addTo(controller)
+      .setClassToggle(textContentRef.current, 'fade-in');
+  }, [currentImage, textContentRef]);
+
+  //onclick
+  const onArrowUpClick = () => {
+    setTimeout(() => setLoading(true), 10);
+    setTimeout(() => setLoading(false), 1000);
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      jumpTo(images[currentIndex - 1]);
+    } else {
+      setCurrentIndex(0);
+    }
+  };
+  const onArrowDownClick = () => {
+    setTimeout(() => setLoading(true), 10);
+    setTimeout(() => setLoading(false), 1000);
+    if (currentIndex < 6) {
+      setCurrentIndex(currentIndex + 1);
+      jumpTo(images[currentIndex + 1]);
+    } else {
+      setCurrentIndex(6);
+    }
+  };
+  const jumpTo = image => {
+    jump(image);
+  };
   const getData = (currentData, currentIndex) => {
     if (currentIndex < 6) {
       btnLeftRef.current.classList.remove('hide');
@@ -78,7 +148,9 @@ const App = () => {
           images={images}
           buttonsRef={buttonsRef}
           textContentRef={textContentRef}
-          getData={getData}
+          onArrowDownClick={onArrowDownClick}
+          onArrowUpClick={onArrowUpClick}
+          loading={loading}
         />
 
         <Content

@@ -1,84 +1,15 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { ScrollArrowsContainer, ScrollArrow } from './ScrollArrowsElements';
-//importing scroll magic library
-import ScrollMagic from 'scrollmagic';
-//jump library
-import jump from 'jump.js';
-//AOS library
-import AOS from 'aos';
-//importing data
-import data from './util';
-//App component
-const ScrollArrows = ({ images, buttonsRef, textContentRef, getData }) => {
+const ScrollArrows = ({ loading, onArrowUpClick, onArrowDownClick }) => {
   //ref to arrows
   const arrowUp = useRef(null);
   const arrowDown = useRef(null);
-  //state
-  const [currentImage, setCurrentImage] = useState(images[0]);
-  const [currentData, setCurrentData] = useState(data[0]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setCurrentImage(images[currentIndex]);
-  }, [currentIndex, images]);
-  useEffect(() => {
-    setCurrentData(data[currentIndex]);
-  }, [currentIndex]);
-  useEffect(() => {
-    getData(currentData, currentIndex);
-  }, [currentData, getData, currentIndex]);
-  useEffect(() => {
-    //initializing AOS library
-    AOS.init({
-      duration: 750,
-    });
-    const controller = new ScrollMagic.Controller();
-    const scene = new ScrollMagic.Scene({
-      triggerElement: `.${currentImage.classList[1]}`,
-      duration: 500,
-      triggerHook: 0.9,
-    })
-      .addTo(controller)
-      .setClassToggle(buttonsRef.current, 'fade-in');
-  }, [buttonsRef, currentImage]);
-  useEffect(() => {
-    //initializing AOS library
-    AOS.init({
-      duration: 2000,
-    });
-    const controller = new ScrollMagic.Controller();
-    const scene = new ScrollMagic.Scene({
-      triggerElement: `.${currentImage.classList[1]}`,
-      duration: 500,
-      triggerHook: 0.9,
-    })
-      .addTo(controller)
-      .setClassToggle(textContentRef.current, 'fade-in');
-  }, [currentImage, textContentRef]);
 
-  //onclick
-  const onArrowUpClick = () => {
-    setTimeout(() => setLoading(true), 10);
-    setTimeout(() => setLoading(false), 1000);
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-      jumpTo(images[currentIndex - 1]);
-    } else {
-      setCurrentIndex(0);
-    }
+  const onArrowUpClickCall = () => {
+    onArrowUpClick();
   };
-  const onArrowDownClick = () => {
-    setTimeout(() => setLoading(true), 10);
-    setTimeout(() => setLoading(false), 1000);
-    if (currentIndex < 6) {
-      setCurrentIndex(currentIndex + 1);
-      jumpTo(images[currentIndex + 1]);
-    } else {
-      setCurrentIndex(6);
-    }
-  };
-  const jumpTo = image => {
-    jump(image);
+  const onArrowDownClickCall = () => {
+    onArrowDownClick();
   };
   return (
     <ScrollArrowsContainer className="scroll-Arrows-container">
@@ -86,7 +17,7 @@ const ScrollArrows = ({ images, buttonsRef, textContentRef, getData }) => {
         className="scroll-arrow arrow-up"
         disabled={loading}
         ref={arrowUp}
-        onClick={onArrowUpClick}
+        onClick={() => onArrowUpClickCall()}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +34,7 @@ const ScrollArrows = ({ images, buttonsRef, textContentRef, getData }) => {
         disabled={loading}
         className="scroll-arrow arrow-down"
         ref={arrowDown}
-        onClick={onArrowDownClick}
+        onClick={() => onArrowDownClickCall()}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

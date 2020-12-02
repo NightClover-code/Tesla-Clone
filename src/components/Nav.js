@@ -10,8 +10,7 @@ import {
   Products,
   Shop,
 } from './NavElements';
-//importing scroll magic library
-import ScrollMagic from 'scrollmagic';
+
 //jump library
 import jump from 'jump.js';
 import React from 'react';
@@ -38,32 +37,32 @@ const Nav = ({ onProductsClick }) => {
         </Logo>
         <Products onClick={onNavClick}>
           <Product data-id="model1">
-            <ItemName href="#" data-id="model1">
+            <ItemName href="#" data-id="model1" id="1">
               Model S
             </ItemName>
           </Product>
           <Product data-id="model2">
-            <ItemName href="#" data-id="model2">
+            <ItemName href="#" data-id="model2" id="2">
               Model 3
             </ItemName>
           </Product>
           <Product data-id="model3">
-            <ItemName href="#" data-id="model3">
+            <ItemName href="#" data-id="model3" id="3">
               Model X
             </ItemName>
           </Product>
           <Product data-id="model4">
-            <ItemName href="#" data-id="model4">
+            <ItemName href="#" data-id="model4" id="4">
               Model Y
             </ItemName>
           </Product>
           <Product data-id="solar-panel">
-            <ItemName href="#" data-id="solar-panel">
+            <ItemName href="#" data-id="solar-panel" id="5">
               Solar Panels
             </ItemName>
           </Product>
           <Product data-id="accessories">
-            <ItemName href="#" data-id="accessories">
+            <ItemName href="#" data-id="accessories" id="6">
               Accessories
             </ItemName>
           </Product>
