@@ -14,3 +14,11 @@ I'm pretty new to React, so feel free to review my code and tell me how can I im
 ## Note
 
 I'm still working on this website, trying to make it better and fix any bugs that can occur.
+
+## Using the website
+
+To use this website, download the cloned repository and make sure to install all the dependencies using the command `npm install` (or yarn) in your terminal.
+
+Run `npm start` (or yarn) to open the server.
+
+Have fun ;)
