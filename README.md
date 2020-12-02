@@ -10,3 +10,7 @@ I made this website using React.js and some javascript libraries for the scrolli
 ## Code Reviews
 
 I'm pretty new to React, so feel free to review my code and tell me how can I improve the code.
+
+## Note
+
+I'm still working on this website, trying to make it better and fix any bugs that can occur.
