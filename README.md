@@ -9,7 +9,7 @@ I made this website using React.js and some javascript libraries for the scrolli
 
 ## Code Reviews
 
-I'm pretty new to React, so feel free to review my code and tell me how can I improve the code.
+I'm pretty new to React, so feel free to review my code and tell me how I can improve it.
 
 ## Note
 
