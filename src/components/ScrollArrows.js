@@ -25,10 +25,10 @@ const ScrollArrows = ({ images, buttonsRef, textContentRef, getData }) => {
     setCurrentData(data[currentIndex]);
   }, [currentIndex]);
   useEffect(() => {
-    getData(currentData);
-  }, [currentData, getData]);
+    getData(currentData, currentIndex);
+  }, [currentData, getData, currentIndex]);
   useEffect(() => {
-    //initializing AOS libra ry
+    //initializing AOS library
     AOS.init({
       duration: 750,
     });
@@ -42,6 +42,7 @@ const ScrollArrows = ({ images, buttonsRef, textContentRef, getData }) => {
       .setClassToggle(buttonsRef.current, 'fade-in');
   }, [buttonsRef, currentImage]);
   useEffect(() => {
+    //initializing AOS library
     AOS.init({
       duration: 2000,
     });

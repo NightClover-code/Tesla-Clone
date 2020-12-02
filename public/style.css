@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  overflow: hidden;
+}
 .background-images {
   width: 100%;
   position: relative;

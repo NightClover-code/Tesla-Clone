@@ -18,9 +18,11 @@ export const Logo = styled.div`
   display: inline-block;
   width: 150px;
   height: 50px;
+  cursor: pointer;
 `;
 
 export const Products = styled.ul`
+  cursor: pointer;
   text-align: center;
   margin-top: 15px;
   margin-left: 80px;
