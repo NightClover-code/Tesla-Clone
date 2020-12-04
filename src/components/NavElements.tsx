@@ -39,6 +39,7 @@ export const ItemName = styled.a`
   text-transform: uppercase;
   color: #000;
   text-decoration: none;
+  cursor: pointer;
 `;
 export const Commerce = styled.ul`
   margin-top: 15px;

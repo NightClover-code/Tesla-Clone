@@ -4,7 +4,7 @@ import './css/app.css';
 import AOS from 'aos';
 //importing scroll magic library
 import ScrollMagic from 'scrollmagic';
-//imoprting components
+//importing components
 import { Header } from './components/NavElements';
 import Nav from './components/Nav';
 import React, { useState, useRef, useEffect } from 'react';
@@ -15,6 +15,14 @@ import ScrollArrows from './components/ScrollArrows';
 //importing data
 import data from './components/util';
 import jump from 'jump.js';
+//types
+interface dataType {
+  detail?: string;
+  title?: string;
+  buttonLeft?: string;
+  buttonRight?: string;
+  button?: string;
+}
 //ref to background images
 const banner = document.querySelector('.banner');
 const model1 = document.querySelector('.model1');
@@ -41,22 +49,25 @@ const App = () => {
     jump('.banner');
   }, []);
   //state
-  const [detail, setDetail] = useState(data[0].detail);
-  const [btnLeft, setBtnLeft] = useState(data[0].btnLeft);
-  const [btnRight, setBtnRight] = useState(data[0].btnRight);
-  const [title, setTitle] = useState(data[0].title);
-  const [currentImage, setCurrentImage] = useState(images[0]);
-  const [currentData, setCurrentData] = useState(data[0]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(false);
-  //Order buttons
-  const buttonsRef = useRef(null);
-  const btnRightRef = useRef(null);
-  const btnLeftRef = useRef(null);
-  const listItemsRef = useRef(null);
-  const logoRef = useRef(null);
-  //ref to the text content
-  const textContentRef = useRef(null);
+  const [detail, setDetail] = useState<string | undefined>(data[0].detail);
+  const [btnLeft, setBtnLeft] = useState<string | undefined>(
+    data[0].buttonLeft
+  );
+  const [btnRight, setBtnRight] = useState<string | undefined>(
+    data[0].buttonRight
+  );
+  const [title, setTitle] = useState<string | undefined>(data[0].title);
+  const [currentImage, setCurrentImage] = useState<Element | null>(images[0]);
+  const [currentData, setCurrentData] = useState<dataType>(data[0]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  //refs to buttons (order.tsx), text content (content.tsx) and list items (nav.tsx)
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const btnRightRef = useRef<HTMLButtonElement>(null);
+  const btnLeftRef = useRef<HTMLButtonElement>(null);
+  const listItemsRef = useRef<HTMLUListElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const textContentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     setCurrentImage(images[currentIndex]);
   }, [currentIndex]);
@@ -71,28 +82,30 @@ const App = () => {
     AOS.init({
       duration: 750,
     });
+    const className = currentImage != null ? currentImage.classList[1] : null;
     const controller = new ScrollMagic.Controller();
     const scene = new ScrollMagic.Scene({
-      triggerElement: `.${currentImage.classList[1]}`,
+      triggerElement: `.${className}`,
       duration: 500,
       triggerHook: 0.9,
     })
       .addTo(controller)
-      .setClassToggle(buttonsRef.current, 'fade-in');
+      .setClassToggle(buttonsRef.current!, 'fade-in');
   }, [buttonsRef, currentImage]);
   useEffect(() => {
     //initializing AOS library
     AOS.init({
       duration: 2000,
     });
+    const className = currentImage != null ? currentImage.classList[1] : null;
     const controller = new ScrollMagic.Controller();
     const scene = new ScrollMagic.Scene({
-      triggerElement: `.${currentImage.classList[1]}`,
+      triggerElement: `.${className}`,
       duration: 500,
       triggerHook: 0.9,
     })
       .addTo(controller)
-      .setClassToggle(textContentRef.current, 'fade-in');
+      .setClassToggle(textContentRef.current!, 'fade-in');
   }, [currentImage, textContentRef]);
 
   //onclick
@@ -101,7 +114,7 @@ const App = () => {
     setTimeout(() => setLoading(false), 1000);
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
-      jumpTo(images[currentIndex - 1]);
+      jumpTo(images[currentIndex - 1]!);
     } else {
       setCurrentIndex(0);
     }
@@ -111,41 +124,63 @@ const App = () => {
     setTimeout(() => setLoading(false), 1000);
     if (currentIndex < 6) {
       setCurrentIndex(currentIndex + 1);
-      jumpTo(images[currentIndex + 1]);
+      jumpTo(images[currentIndex + 1]!);
     } else {
       setCurrentIndex(6);
     }
   };
-  const jumpTo = image => {
+  const jumpTo = (image: string | number | Element) => {
     jump(image);
   };
-  const getData = (currentData, currentIndex) => {
+  const getData = (currentData: dataType, currentIndex: number) => {
     if (currentIndex < 6) {
-      btnLeftRef.current.classList.remove('hide');
       setTimeout(() => {
+        if (btnLeftRef.current !== null) {
+          btnLeftRef.current.classList.remove('hide');
+        }
         setDetail(currentData.detail);
         setTitle(currentData.title);
         setBtnLeft(currentData.buttonLeft);
         setBtnRight(currentData.buttonRight);
-      }, 500);
+      }, 600);
     } else {
       setTimeout(() => {
+        if (btnLeftRef.current !== null) {
+          btnLeftRef.current.classList.add('hide');
+        }
         setTitle(currentData.title);
         setDetail('');
-        btnLeftRef.current.classList.add('hide');
         setBtnLeft(currentData.button);
       }, 500);
     }
   };
-  const onProductsClick = event => {
-    setTimeout(() => listItemsRef.current.classList.add('disable'), 10);
-    setTimeout(() => listItemsRef.current.classList.remove('disable'), 1000);
+  const onProductsClick = (event: {
+    target: { getAttribute: (arg0: string) => React.SetStateAction<number> };
+  }) => {
+    setTimeout(() => {
+      if (listItemsRef.current) {
+        return listItemsRef.current.classList.add('disable');
+      }
+    }, 10);
+    setTimeout(() => {
+      if (listItemsRef.current) {
+        return listItemsRef.current.classList.remove('disable');
+      }
+    }, 1000);
     jump(`.${event.target.getAttribute('data-id')}`);
     setCurrentIndex(event.target.getAttribute('data-number'));
   };
   const onLogoClick = () => {
-    setTimeout(() => logoRef.current.classList.add('disable'), 10);
-    setTimeout(() => logoRef.current.classList.remove('disable'), 1000);
+    setTimeout(() => {
+      if (logoRef.current) {
+        return logoRef.current.classList.add('disable');
+      }
+    }, 10);
+    setTimeout(() => {
+      if (logoRef.current) {
+        return logoRef.current.classList.remove('disable');
+      }
+    }, 1000);
     jump('.banner');
     setCurrentIndex(0);
     setTimeout(() => {
@@ -167,22 +202,17 @@ const App = () => {
       </Header>
       <Main>
         <ScrollArrows
-          images={images}
-          buttonsRef={buttonsRef}
-          textContentRef={textContentRef}
           onArrowDownClick={onArrowDownClick}
           onArrowUpClick={onArrowUpClick}
           loading={loading}
         />
 
         <Content
-          images={images}
           textContentRef={textContentRef}
           title={title}
           detail={detail}
         />
         <Order
-          images={images}
           buttonsRef={buttonsRef}
           btnLeft={btnLeft}
           btnRight={btnRight}

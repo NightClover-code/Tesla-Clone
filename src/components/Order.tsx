@@ -2,9 +2,22 @@
 import React from 'react';
 import { ButtonsContainer, Button } from './OrderElements';
 import 'aos/dist/aos.css';
-
+//types
+interface Props {
+  buttonsRef: React.RefObject<HTMLDivElement>;
+  btnLeft: string | undefined;
+  btnRight: string | undefined;
+  btnLeftRef: React.RefObject<HTMLButtonElement>;
+  btnRightRef: React.RefObject<HTMLButtonElement>;
+}
 //Ordering tesla cars 'buttons' component
-const Order = ({ buttonsRef, btnLeft, btnRight, btnRightRef, btnLeftRef }) => {
+const Order: React.FC<Props> = ({
+  buttonsRef,
+  btnLeft,
+  btnRight,
+  btnRightRef,
+  btnLeftRef,
+}) => {
   return (
     <ButtonsContainer ref={buttonsRef} className="buttons-container">
       <div

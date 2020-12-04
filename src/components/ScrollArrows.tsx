@@ -1,9 +1,19 @@
 import React, { useRef } from 'react';
 import { ScrollArrowsContainer, ScrollArrow } from './ScrollArrowsElements';
-const ScrollArrows = ({ loading, onArrowUpClick, onArrowDownClick }) => {
+//types
+interface Props {
+  loading: boolean;
+  onArrowUpClick: () => void;
+  onArrowDownClick: () => void;
+}
+const ScrollArrows: React.FC<Props> = ({
+  loading,
+  onArrowUpClick,
+  onArrowDownClick,
+}) => {
   //ref to arrows
-  const arrowUp = useRef(null);
-  const arrowDown = useRef(null);
+  const arrowUp = useRef<HTMLButtonElement>(null);
+  const arrowDown = useRef<HTMLButtonElement>(null);
 
   const onArrowUpClickCall = () => {
     onArrowUpClick();

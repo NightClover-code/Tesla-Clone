@@ -11,18 +11,30 @@ import {
   Shop,
 } from './NavElements';
 import React from 'react';
+//types
+interface Props {
+  onProductsClick: (event: any) => void;
+  onLogoClick: () => void;
+  listItemsRef: React.RefObject<HTMLUListElement>;
+  logoRef: React.RefObject<HTMLDivElement>;
+}
 //Nav Component
-const Nav = ({ onProductsClick, onLogoClick, listItemsRef, logoRef }) => {
+const Nav: React.FC<Props> = ({
+  onProductsClick,
+  onLogoClick,
+  listItemsRef,
+  logoRef,
+}) => {
   const onLogoClickCall = () => {
     onLogoClick();
   };
-  const onNavClick = event => {
+  const onNavClick = (event: any) => {
     onProductsClick(event);
   };
   return (
     <NavContainer className="nav-container">
       <NavBar>
-        <Logo className="logo" href="#" onClick={onLogoClickCall} ref={logoRef}>
+        <Logo className="logo" onClick={onLogoClickCall} ref={logoRef}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="50"
@@ -96,10 +108,10 @@ const Nav = ({ onProductsClick, onLogoClick, listItemsRef, logoRef }) => {
         </Products>
         <Commerce>
           <Shop>
-            <ItemName href="#">Shop</ItemName>
+            <ItemName>Shop</ItemName>
           </Shop>
           <Account>
-            <ItemName href="#">Tesla Account</ItemName>
+            <ItemName>Tesla Account</ItemName>
           </Account>
         </Commerce>
       </NavBar>
