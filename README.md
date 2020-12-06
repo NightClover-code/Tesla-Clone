@@ -1,3 +1,7 @@
+## Preview
+
+![](./public/images/preview.png)
+
 ## Tesla Website Clone (Rebuilt and Upgraded)
 
 This is a clone of the official tesla website. the purpose of this project is to try to make a better clone,
