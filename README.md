@@ -1,6 +1,6 @@
 ## Preview
 
-![](./public/images/preview.png)
+![](./public/images/preview.gif)
 
 ## Tesla Website Clone (Rebuilt and Upgraded)
 
