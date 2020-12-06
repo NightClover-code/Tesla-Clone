@@ -12,7 +12,7 @@ export const NavBar = styled.nav`
   display: flex;
   justify-content: space-between;
   position: fixed;
-  width: 98%;
+  width: 97%;
 `;
 export const Logo = styled.div`
   display: inline-block;

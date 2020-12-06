@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
     "@types/aos": "^3.0.3",
     "@types/jump.js": "^1.0.3",
     "@types/scrollmagic": "^2.0.1",
