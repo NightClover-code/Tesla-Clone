@@ -18,6 +18,7 @@ I'm pretty new to React, so feel free to review my code and tell me how I can im
 ## Note
 
 I'm still working on this website, trying to make it better and fix any bugs that can occur.
+This website is also not responsive yet, working on that too.
 
 ## Getting started
 
