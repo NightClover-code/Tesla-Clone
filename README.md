@@ -21,8 +21,11 @@ I'm still working on this website, trying to make it better and fix any bugs tha
 
 ## Getting started
 
+## Option1
 To use this website, download the cloned repository and make sure to install all the dependencies using the command `npm install` (or yarn) in your terminal.
 
 Run `npm start` (or yarn) to open the server.
 
 Have fun ;)
+##Option 2
+Visit this link: https://quizzical-agnesi-66fb43.netlify.app
