@@ -27,5 +27,5 @@ To use this website, download the cloned repository and make sure to install all
 Run `npm start` (or yarn) to open the server.
 
 Have fun ;)
-##Option 2
+## Option 2
 Visit this link: https://quizzical-agnesi-66fb43.netlify.app
